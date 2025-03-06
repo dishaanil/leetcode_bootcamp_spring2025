@@ -5,20 +5,15 @@ class Solution(object):
         :type target: int
         :rtype: List[int]
         """
-        #need left and right pointer
-        left_pointer = 0
-        right_pointer = len(numbers) - 1
-        res = []
-        #loop, left pointer at start and right pointer at end 
-        while left_pointer < right_pointer:
-            current_sum = numbers[left_pointer] + numbers[right_pointer]
-         # if the sum is equal to target return the indexes
-            if current_sum == target:
-                return [left_pointer + 1, right_pointer + 1]
-        # if the sum of the left and right pointer is > target, decrease index of right pointer
-            elif current_sum > target:
-                right_pointer -= 1
-        #if the sum of the left and right pointer is < target, increase index of left pointer
+        low= 0
+        high=len(numbers)-1
+        while(low<high):
+            sum = numbers[low] + numbers[high]
+            if(sum == target):
+                return[low+1, high+1]
+            elif(sum<target):
+                low += 1
             else:
-                left_pointer += 1 
-        return []
+                high -= 1
+
+        return[-1,-1]               
